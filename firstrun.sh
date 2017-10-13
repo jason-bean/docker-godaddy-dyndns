@@ -10,6 +10,11 @@
 #  python3 -m venv --system-site-packages venv
 #fi
 
+if [ ! -f /config/godaddy-dyndns.conf.template ]; then
+  echo "Copy template file."
+  cp /godaddy-dyndns/godaddy-dyndns.conf.template /config
+fi
+
 FREQ_MINUTES=${FREQ_MINUTES}
 
 crontab -r

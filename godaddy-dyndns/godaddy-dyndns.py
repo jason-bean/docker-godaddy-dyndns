@@ -14,7 +14,7 @@ CONFIG_FILE = 'godaddy-dyndns.conf'
 LOG_FILE = 'godaddy-dyndns.log'
 PREVIOUS_IP_FILE = 'previous-ip.txt'
 
-if len(sys.argv) == 2
+if len(sys.argv) == 2:
     CONFIG_FILE = sys.argv[1] + '/' + CONFIG_FILE
     LOG_FILE = sys.argv[1] + '/' + LOG_FILE
     PREVIOUS_IP_FILE = sys.argv[1] + '/' + PREVIOUS_IP_FILE

@@ -30,7 +30,6 @@ RUN pip3 install requests
 
 RUN mkdir -p /config /godaddy-dyndns/venv
 COPY godaddy-dyndns/ /godaddy-dyndns
-COPY godaddy-dyndns/godaddy-dyndns.conf.template /config/godaddy-dyndns.conf.template
 COPY firstrun.sh /etc/my_init.d/firstrun.sh
 RUN chmod +x /etc/my_init.d/firstrun.sh && \
     chmod +x /godaddy-dyndns/godaddy-dyndns.py && \
