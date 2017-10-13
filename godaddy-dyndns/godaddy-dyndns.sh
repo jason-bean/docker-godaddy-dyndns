@@ -13,4 +13,4 @@ fi
 CONFIG_PATH="$1"
 
 source venv/bin/activate
-./godaddy-dyndns.py "$CONFIG_PATH"
+./godaddy-dyndns.py --config "$CONFIG_PATH"
