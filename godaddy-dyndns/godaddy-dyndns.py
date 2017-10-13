@@ -10,8 +10,14 @@ from collections import namedtuple
 
 import requests
 
+CONFIG_FILE = 'godaddy-dyndns.conf'
+LOG_FILE = 'godaddy-dyndns.log'
 PREVIOUS_IP_FILE = 'previous-ip.txt'
 
+if len(sys.argv) == 2
+    CONFIG_FILE = sys.argv[1] + '/' + CONFIG_FILE
+    LOG_FILE = sys.argv[1] + '/' + LOG_FILE
+    PREVIOUS_IP_FILE = sys.argv[1] + '/' + PREVIOUS_IP_FILE
 
 class GdClient:
     BASE_URI = 'https://api.godaddy.com/v1'
@@ -57,7 +63,7 @@ class GdClient:
 class Conf:
     def __init__(self, filename):
         parser = configparser.ConfigParser()
-        parser.read('godaddy-dyndns.conf')
+        parser.read(CONFIG_FILE)
 
         self.key = parser.get('godaddy', 'key')
         self.secret = parser.get('godaddy', 'secret')
@@ -134,7 +140,7 @@ def init_logging(debug):
         l.addHandler(logging.StreamHandler())
     else:
         rotater = logging.handlers.RotatingFileHandler(
-            'godaddy-dyndns.log', maxBytes=10000000, backupCount=2)
+            LOG_FILE, maxBytes=10000000, backupCount=2)
         l.addHandler(rotater)
         rotater.setFormatter(logging.Formatter('%(asctime)s %(message)s'))
 
@@ -172,7 +178,7 @@ def main(args):
     if ip is None:
         return 0
 
-    conf = Conf('godaddy-dyndns.conf')
+    conf = Conf(CONFIG_FILE)
     client = GdClient(conf.key, conf.secret)
 
     logging.info("New IP %s", ip)

@@ -10,5 +10,7 @@ if [[ ! -d venv ]]; then
     exit 1
 fi
 
+CONFIG_PATH="$1"
+
 source venv/bin/activate
-./godaddy-dyndns.py
+./godaddy-dyndns.py "$CONFIG_PATH"
