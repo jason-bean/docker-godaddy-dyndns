@@ -166,6 +166,9 @@ def all_unique(iterable):
 
 def main(args):
     if args.config is not None:
+        global CONFIG_FILE
+        global LOG_FILE
+        global PREVIOUS_IP_FILE
         CONFIG_FILE = args.config + '/' + CONFIG_FILE
         LOG_FILE = args.config + '/' + LOG_FILE
         PREVIOUS_IP_FILE = args.config + '/' + PREVIOUS_IP_FILE
