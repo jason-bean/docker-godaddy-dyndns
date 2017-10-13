@@ -7,5 +7,5 @@ else
   cp /etc/firstrun/godaddy-dyndns/* /godaddy-dyndns
   cd /godaddy-dyndns
   mkdir venv
-  python3 -m venv venv
+  python3 -m venv --system-site-packages venv
 fi
