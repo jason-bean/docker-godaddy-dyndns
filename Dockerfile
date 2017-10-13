@@ -24,9 +24,9 @@ RUN apt-get update && \
 apt-get install -y \
 python \
 python3-venv \
-python-pip
+python3-pip
 
-RUN pip install requests
+RUN pip3 install requests
 
 RUN mkdir -p /godaddy-dyndns /etc/firstrun/godaddy-dyndns
 COPY godaddy-dyndns/ /etc/firstrun/godaddy-dyndns
