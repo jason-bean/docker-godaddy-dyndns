@@ -41,6 +41,6 @@ RUN cd /godaddy-dyndns && \
 #RUN (crontab -l 2>/dev/null; echo "0 * * * * /godaddy-dyndns/godaddy-dyndns.sh") | crontab - && \
 #    (crontab -l 2>/dev/null; echo "@reboot sleep 30 && /godaddy-dyndns/godaddy-dyndns.sh") | crontab -
 
-#RUN (crontab -l 2>/dev/null; echo "*/30 * * * * /godaddy-dyndns/godaddy-dyndns.sh") | crontab -
+RUN (crontab -l 2>/dev/null; echo "*/0 * * * * /godaddy-dyndns/setcron.sh") | crontab -
 
 VOLUME [ "/config" ]
