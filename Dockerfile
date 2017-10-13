@@ -23,6 +23,7 @@ RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
 RUN apt-get update && \
 apt-get install -y \
 python \
+python3-venv \
 python-pip
 
 RUN pip install requests
