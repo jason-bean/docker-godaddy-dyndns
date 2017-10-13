@@ -5,4 +5,7 @@ if [ -f /godaddy-dyndns/godaddy-dyndns.py ]; then
 else
   echo "Installing godaddy-dyndns files."
   cp /etc/firstrun/godaddy-dyndns/* /godaddy-dyndns
+  cd /godaddy-dyndns
+  mkdir venv
+  python -m venv venv
 fi
