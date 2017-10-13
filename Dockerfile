@@ -33,7 +33,8 @@ COPY godaddy-dyndns/ /godaddy-dyndns
 COPY firstrun.sh /etc/my_init.d/firstrun.sh
 RUN chmod +x /etc/my_init.d/firstrun.sh && \
     chmod +x /godaddy-dyndns/godaddy-dyndns.py && \
-    chmod +x /godaddy-dyndns/godaddy-dyndns.sh
+    chmod +x /godaddy-dyndns/godaddy-dyndns.sh && \
+    chmod +x /godaddy-dyndns/setcron.sh
 
 RUN cd /godaddy-dyndns && \
     python3 -m venv --system-site-packages venv
