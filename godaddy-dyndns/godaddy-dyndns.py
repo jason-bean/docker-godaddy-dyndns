@@ -14,11 +14,6 @@ CONFIG_FILE = 'godaddy-dyndns.conf'
 LOG_FILE = 'godaddy-dyndns.log'
 PREVIOUS_IP_FILE = 'previous-ip.txt'
 
-if len(sys.argv) == 2:
-    CONFIG_FILE = sys.argv[1] + '/' + CONFIG_FILE
-    LOG_FILE = sys.argv[1] + '/' + LOG_FILE
-    PREVIOUS_IP_FILE = sys.argv[1] + '/' + PREVIOUS_IP_FILE
-
 class GdClient:
     BASE_URI = 'https://api.godaddy.com/v1'
 
@@ -170,6 +165,11 @@ def all_unique(iterable):
 
 
 def main(args):
+    if args.config is not None:
+        CONFIG_FILE = args.config + '/' + CONFIG_FILE
+        LOG_FILE = args.config + '/' + LOG_FILE
+        PREVIOUS_IP_FILE = args.config + '/' + PREVIOUS_IP_FILE
+
     init_logging(args.debug)
 
     ip = get_public_ip_if_changed(args.debug)
@@ -242,6 +242,7 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--debug', action='store_true')
+    parser.add_argument('--config', type=str)
     args = parser.parse_args()
 
     try:
