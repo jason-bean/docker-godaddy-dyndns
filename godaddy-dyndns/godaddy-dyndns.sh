@@ -3,6 +3,7 @@
 set -e
 
 cd "$(dirname "$0")"
+echo "$(dirname "$0")"
 
 if [[ ! -d venv ]]; then
     echo "venv not initialized!" >& 2

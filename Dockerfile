@@ -28,16 +28,20 @@ python3-pip
 
 RUN pip3 install requests
 
-RUN mkdir -p /godaddy-dyndns /etc/firstrun/godaddy-dyndns
-COPY godaddy-dyndns/ /etc/firstrun/godaddy-dyndns
+RUN mkdir -p /config /godaddy-dyndns/venv
+COPY godaddy-dyndns/ /godaddy-dyndns
+COPY godaddy-dyndns/godaddy-dyndns.conf.template /config/godaddy-dyndns.conf.template
 COPY firstrun.sh /etc/my_init.d/firstrun.sh
 RUN chmod +x /etc/my_init.d/firstrun.sh && \
-    chmod +x /etc/firstrun/godaddy-dyndns/godaddy-dyndns.py && \
-    chmod +x /etc/firstrun/godaddy-dyndns/godaddy-dyndns.sh
+    chmod +x /godaddy-dyndns/godaddy-dyndns.py && \
+    chmod +x /godaddy-dyndns/godaddy-dyndns.sh
+
+RUN cd /godaddy-dyndns && \
+    python3 -m venv --system-site-packages venv
 
 #RUN (crontab -l 2>/dev/null; echo "0 * * * * /godaddy-dyndns/godaddy-dyndns.sh") | crontab - && \
 #    (crontab -l 2>/dev/null; echo "@reboot sleep 30 && /godaddy-dyndns/godaddy-dyndns.sh") | crontab -
 
-RUN (crontab -l 2>/dev/null; echo "*/30 * * * * /godaddy-dyndns/godaddy-dyndns.sh") | crontab -
+#RUN (crontab -l 2>/dev/null; echo "*/30 * * * * /godaddy-dyndns/godaddy-dyndns.sh") | crontab -
 
-VOLUME [ "/godaddy-dyndns" ]
+VOLUME [ "/config" ]
