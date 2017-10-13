@@ -34,7 +34,9 @@ RUN chmod +x /etc/my_init.d/firstrun.sh && \
     chmod +x /etc/firstrun/godaddy-dyndns/godaddy-dyndns.py && \
     chmod +x /etc/firstrun/godaddy-dyndns/godaddy-dyndns.sh
 
-RUN (crontab -l 2>/dev/null; echo "0 * * * * /godaddy-dyndns/godaddy-dyndns.sh") | crontab - && \
-    (crontab -l 2>/dev/null; echo "@reboot sleep 30 && /godaddy-dyndns/godaddy-dyndns.sh") | crontab -
+#RUN (crontab -l 2>/dev/null; echo "0 * * * * /godaddy-dyndns/godaddy-dyndns.sh") | crontab - && \
+#    (crontab -l 2>/dev/null; echo "@reboot sleep 30 && /godaddy-dyndns/godaddy-dyndns.sh") | crontab -
+
+RUN (crontab -l 2>/dev/null; echo "*/30 * * * * /godaddy-dyndns/godaddy-dyndns.sh") | crontab -
 
 VOLUME [ "/godaddy-dyndns" ]
