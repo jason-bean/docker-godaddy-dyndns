@@ -39,9 +39,6 @@ RUN chmod +x /etc/my_init.d/firstrun.sh && \
 RUN cd /godaddy-dyndns && \
     python3 -m venv --system-site-packages venv
 
-#RUN (crontab -l 2>/dev/null; echo "0 * * * * /godaddy-dyndns/godaddy-dyndns.sh") | crontab - && \
-#    (crontab -l 2>/dev/null; echo "@reboot sleep 30 && /godaddy-dyndns/godaddy-dyndns.sh") | crontab -
-
 RUN (crontab -l 2>/dev/null; echo "* * * * * /godaddy-dyndns/setcron.sh") | crontab -
 
 VOLUME [ "/config" ]
