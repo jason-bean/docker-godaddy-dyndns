@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.7
 LABEL maintainer "taddeusz@gmail.com"
 
 RUN mkdir -p /config /godaddy-dyndns/venv
